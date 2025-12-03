@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThS. Huỳnh Thị Thúy Loan - Giảng viên Khoa Công nghệ</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 50%, #3d7ab5 100%);
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #2d5a87, #3d7ab5);
+            margin-top: 10px;
+            border-radius: 2px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 8px;
+            width: 16px;
+            height: 16px;
+            background: #2d5a87;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            box-shadow: 0 0 0 3px #2d5a87;
+        }
+        .timeline-line {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #2d5a87, #3d7ab5);
+        }
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .publication-item {
+            border-left: 3px solid #2d5a87;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <a href="#home" class="text-white font-bold text-xl font-playfair">HTT Loan</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-white hover:text-gray-200">Trang chủ</a>
+                    <a href="#about" class="nav-link text-white hover:text-gray-200">Giới thiệu</a>
+                    <a href="#education" class="nav-link text-white hover:text-gray-200">Đào tạo</a>
+                    <a href="#awards" class="nav-link text-white hover:text-gray-200">Giải thưởng</a>
+                    <a href="#research" class="nav-link text-white hover:text-gray-200">Nghiên cứu</a>
+                    <a href="#publications" class="nav-link text-white hover:text-gray-200">Công bố</a>
+                    <a href="#contact" class="nav-link text-white hover:text-gray-200">Liên hệ</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-white">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800/95 backdrop-blur-sm">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#home" class="block text-white py-2">Trang chủ</a>
+                <a href="#about" class="block text-white py-2">Giới thiệu</a>
+                <a href="#education" class="block text-white py-2">Đào tạo</a>
+                <a href="#awards" class="block text-white py-2">Giải thưởng</a>
+                <a href="#research" class="block text-white py-2">Nghiên cứu</a>
+                <a href="#publications" class="block text-white py-2">Công bố</a>
+                <a href="#contact" class="block text-white py-2">Liên hệ</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="gradient-bg min-h-screen flex items-center relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-center md:text-left">
+                    <p class="text-blue-200 text-lg mb-4 tracking-wider">CHÀO MỪNG ĐẾN VỚI TRANG CÁ NHÂN</p>
+                    <h1 class="font-playfair text-4xl md:text-6xl font-bold text-white mb-4">
+                        ThS. Huỳnh Thị<br>Thúy Loan
+                    </h1>
+                    <p class="text-xl text-blue-100 mb-6">Giảng viên Khoa Công nghệ</p>
+                    <div class="glass-effect rounded-xl p-6 mb-8">
+                        <p class="text-white italic text-lg leading-relaxed">
+                            <i class="fas fa-quote-left text-blue-300 mr-2"></i>
+                            Sứ mệnh: Gắn kết tri thức – xây dựng tương lai phát triển bền vững và phục vụ cộng đồng
+                            <i class="fas fa-quote-right text-blue-300 ml-2"></i>
+                        </p>
+                    </div>
+                    <div class="glass-effect rounded-xl p-4 inline-block">
+                        <p class="text-blue-100">
+                            <i class="fas fa-star text-yellow-400 mr-2"></i>
+                            Giá trị cốt lõi: <span class="text-white font-semibold">Sai để học – Sửa để giỏi</span>
+                            <br><span class="text-yellow-300">"Thép muốn cứng phải rèn"</span>
+                        </p>
+                    </div>
+                    <div class="flex justify-center md:justify-start space-x-4 mt-8">
+                        <a href="#contact" class="bg-white text-blue-800 px-8 py-3 rounded-full font-semibold hover:bg-blue-50 transition-all shadow-lg">
+                            Liên hệ ngay
+                        </a>
+                        <a href="#about" class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-800 transition-all">
+                            Tìm hiểu thêm
+                        </a>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <div class="relative">
+                        <div class="w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-white/30 shadow-2xl">
+                            <div class="w-full h-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                                <i class="fas fa-user text-white text-8xl opacity-50"></i>
+                            </div>
+                        </div>
+                        <div class="absolute -bottom-4 -right-4 glass-effect rounded-xl p-4">
+                            <p class="text-white font-semibold">DNTU</p>
+                            <p class="text-blue-200 text-sm">Đồng Nai</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 scroll-indicator">
+            <a href="#about" class="text-white">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="font-playfair text-4xl font-bold text-gray-800 section-title inline-block">Hồ Sơ Chuyên Môn</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <div class="fade-in">
+                    <div class="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-8 shadow-lg card-hover">
+                        <h3 class="font-playfair text-2xl font-bold text-gray-800 mb-6">
+                            <i class="fas fa-id-card text-blue-600 mr-3"></i>Thông tin cá nhân
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <span class="w-40 text-gray-500">Họ và tên:</span>
+                                <span class="font-semibold text-gray-800">Huỳnh Thị Thúy Loan</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="w-40 text-gray-500">Chức danh:</span>
+                                <span class="font-semibold text-gray-800">Giảng viên</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="w-40 text-gray-500">Chuyên ngành:</span>
+                                <span class="font-semibold text-gray-800">Công nghệ thực phẩm</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="w-40 text-gray-500">Đơn vị công tác:</span>
+                                <span class="font-semibold text-gray-800">Khoa Công nghệ, Trường ĐH Công Nghệ Đồng Nai</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="w-40 text-gray-500">Năm sinh:</span>
+                                <span class="font-semibold text-gray-800">1989 – Đồng Nai</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fade-in">
+                    <div class="bg-gradient-to-br from-green-50 to-white rounded-2xl p-8 shadow-lg card-hover">
+                        <h3 class="font-playfair text-2xl font-bold text-gray-800 mb-6">
+                            <i class="fas fa-link text-green-600 mr-3"></i>Liên kết học thuật
+                        </h3>
+                        <div class="space-y-4">
+                            <a href="https://orcid.org/0009-0002-4266-668X" target="_blank" class="flex items-center p-4 bg-white rounded-xl shadow hover:shadow-md transition-all group">
+                                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fab fa-orcid text-green-600 text-2xl"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-800 group-hover:text-green-600">ORCID</p>
+                                    <p class="text-gray-500 text-sm">0009-0002-4266-668X</p>
+                                </div>
+                                <i class="fas fa-external-link-alt ml-auto text-gray-400 group-hover:text-green-600"></i>
+                            </a>
+                            <a href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank" class="flex items-center p-4 bg-white rounded-xl shadow hover:shadow-md transition-all group">
+                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-graduation-cap text-blue-600 text-2xl"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-800 group-hover:text-blue-600">Google Scholar</p>
+                                    <p class="text-gray-500 text-sm">Ms. Loan Thuy Huynh</p>
+                                </div>
+                                <i class="fas fa-external-link-alt ml-auto text-gray-400 group-hover:text-blue-600"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mt-6 bg-gradient-to-br from-purple-50 to-white rounded-2xl p-8 shadow-lg card-hover">
+                        <h3 class="font-playfair text-2xl font-bold text-gray-800 mb-6">
+                            <i class="fas fa-chalkboard-teacher text-purple-600 mr-3"></i>Giảng dạy
+                        </h3>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="bg-white rounded-lg p-3 shadow text-center">
+                                <i class="fas fa-snowflake text-blue-500 mb-2"></i>
+                                <p class="text-sm font-medium">Công nghệ lạnh</p>
+                            </div>
+                            <div class="bg-white rounded-lg p-3 shadow text-center">
+                                <i class="fas fa-flask text-green-500 mb-2"></i>
+                                <p class="text-sm font-medium">Phân tích thực phẩm</p>
+                            </div>
+                            <div class="bg-white rounded-lg p-3 shadow text-center">
+                                <i class="fas fa-eye text-purple-500 mb-2"></i>
+                                <p class="text-sm font-medium">Đánh giá cảm quan</p>
+                            </div>
+                            <div class="bg-white rounded-lg p-3 shadow text-center">
+                                <i class="fas fa-chart-bar text-orange-500 mb-2"></i>
+                                <p class="text-sm font-medium">Xử lý số liệu</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Experience Section -->
+    <section id="education" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="font-playfair text-4xl font-bold text-gray-800 section-title inline-block">Quá Trình Đào Tạo & Công Tác</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Education -->
+                <div class="fade-in">
+                    <h3 class="font-playfair text-2xl font-bold text-gray-800 mb-8 flex items-center">
+                        <span class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-graduation-cap text-white"></i>
+                        </span>
+                        Quá trình đào tạo
+                    </h3>
+                    <div class="relative pl-8">
+                        <div class="timeline-line"></div>
+                        <div class="timeline-item relative pb-8 pl-8">
+                            <div class="bg-white rounded-xl p-6 shadow-lg card-hover">
+                                <span class="text-blue-600 font-bold">2011</span>
+                                <h4 class="font-semibold text-gray-800 mt-2">Kỹ sư ngành Công nghệ thực phẩm</h4>
+                                <p class="text-gray-500">ĐH Bà Rịa – Vũng Tàu</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item relative pb-8 pl-8">
+                            <div class="bg-white rounded-xl p-6 shadow-lg card-hover">
+                                <span class="text-blue-600 font-bold">2016</span>
+                                <h4 class="font-semibold text-gray-800 mt-2">Thạc sĩ ngành Công nghệ thực phẩm và đồ uống</h4>
+                                <p class="text-gray-500">ĐH Bách Khoa Thành Phố Hồ Chí Minh</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item relative pl-8">
+                            <div class="bg-white rounded-xl p-6 shadow-lg card-hover">
+                                <span class="text-blue-600 font-bold">2025</span>
+                                <h4 class="font-semibold text-gray-800 mt-2">Cử nhân ngôn ngữ Anh</h4>
+                                <p class="text-gray-500">ĐH Công nghệ Đồng Nai</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Experience -->
+                <div class="fade-in">
+                    <h3 class="font-playfair text-2xl font-bold text-gray-800 mb-8 flex items-center">
+                        <span class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-briefcase text-white"></i>
+                        </span>
+                        Quá trình công tác
+                    </h3>
+                    <div class="relative pl-8">
+                        <div class="timeline-line" style="background: linear-gradient(180deg, #16a34a, #22c55e);"></div>
+                        <div class="timeline-item relative pb-8 pl-8" style="--tw-ring-color: #16a34a;">
+                            <div class="bg-white rounded-xl p-6 shadow-lg card-hover" style="border-left: 4px solid #16a34a;">
+                                <span class="text-green-600 font-bold">2011 - 2012</span>
+                                <h4 class="font-semibold text-gray-800 mt-2">Trưởng nhóm R&D</h4>
+                                <p class="text-gray-500">Công ty ANCO</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item relative pl-8" style="--tw-ring-color: #16a34a;">
+                            <div class="bg-white rounded-xl p-6 shadow-lg card-hover" style="border-left: 4px solid #16a34a;">
+                                <span class="text-green-600 font-bold">2012 - Nay</span>
+                                <h4 class="font-semibold text-gray-800 mt-2">Giảng viên Khoa Công Nghệ</h4>
+                                <p class="text-gray-500">Trường ĐH Công Nghệ Đồng Nai</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards Section -->
+    <section id="awards" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="font-playfair text-4xl font-bold text-gray-800 section-title inline-block">Khen Thưởng & Giải Thưởng KHCN</h2>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 fade-in">
+                <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl p-6 shadow-lg card-hover border-l-4 border-yellow-500">
+                    <div class="flex items-start mb-4">
+                        <span class="bg-yellow-500 text-white px-3 py-1 rounded-full text-sm font-bold">Giải Ba</span>
+                        <span class="ml-auto text-gray-500 text-sm">2018</span>
+                    </div>
+                    <h4 class="font-semibold text-gray-800">Mô hình sản xuất tinh bột nghệ</h4>
+                    <p class="text-gray-500 text-sm mt-2">Hội thi sáng tạo kỹ thuật tỉnh Đồng Nai</p>
+                </div>
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 shadow-lg card-hover border-l-4 border-blue-500">
+                    <div class="flex items-start mb-4">
+                        <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-bold">Khuyến khích</span>
+                        <span class="ml-auto text-gray-500 text-sm">2019</span>
+                    </div>
+                    <h4 class="font-semibold text-gray-800">Sữa đặc từ hạt</h4>
+                    <p class="text-gray-500 text-sm mt-2">Hội thi sáng kiến, sáng tạo tỉnh Đồng Nai</p>
+                </div>
+                <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl p-6 shadow-lg card-hover border-l-4 border-yellow-500">
+                    <div class="flex items-start mb-4">
+                        <span class="bg-yellow-500 text-white px-3 py-1 rounded-full text-sm font-bold">Giải Ba</span>
+                        <span class="ml-auto text-gray-500 text-sm">2021</span>
+                    </div>
+                    <h4 class="font-semibold text-gray-800">Nước bưởi cô đặc ứng dụng trên thiết bị cô đặc cải tiến</h4>
+                    <p class="text-gray-500 text-sm mt-2">Chương trình sáng kiến tỉnh Đồng Nai</p>
+                </div>
+                <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl p-6 shadow-lg card-hover border-l-4 border-yellow-500">
+                    <div class="flex items-start mb-4">
+                        <span class="bg-yellow-500 text-white px-3 py-1 rounded-full text-sm font-bold">Giải Ba</span>
+                        <span class="ml-auto text-gray-500 text-sm">2021</span>
+                    </div>
+                    <h4 class="font-semibold text-gray-800">Quy trình sản xuất cao trà gạo lứt</h4>
+                    <p class="text-gray-500 text-sm mt-2">Chương trình sáng kiến tỉnh Đồng Nai</p>
+                </div>
+                <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl p-6 shadow-lg card-hover border-l-4 border-yellow-500">
+                    <div class="flex items-start mb-4">
+                        <span class="bg-yellow-500 text-white px-3 py-1 rounded-full text-sm font-bold">Giải Ba</span>
+                        <span class="ml-auto text-gray-500 text-sm">2023</span>
+                    </div>
+                    <h4 class="font-semibold text-gray-800">Rượu mộng dừa ủ trong thùng gỗ sồi</h4>
+                    <p class="text-gray-500 text-sm mt-2">Hội thi sáng kiến, sáng tạo tỉnh Đồng Nai</p>
+                </div>
+                <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-6 shadow-lg card-hover border-l-4 border-purple-500">
+                    <div class="flex items-start mb-4">
+                        <span class="bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-bold">Toàn quốc</span>
+                        <span class="ml-auto text-gray-500 text-sm">2023</span>
+                    </div>
+                    <h4 class="font-semibold text-gray-800">Chưng cất rượu mộng dừa cao độ</h4>
+                    <p class="text-gray-500 text-sm mt-2">Hội thi sáng tạo kỹ thuật Toàn quốc</p>
+                </div>
+                <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 shadow-lg card-hover border-l-4 border-green-500">
+                    <div class="flex items-start mb-4">
+                        <span class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">Giải Nhì</span>
+                        <span class="ml-auto text-gray-500 text-sm">2025</span>
+                    </div>
+                    <h4 class="font-semibold text-gray-800">Hệ thống phát hiện nấm mốc gây bệnh trên phôi trồng nấm</h4>
+                    <p class="text-gray-500 text-sm mt-2">Hội thi sáng tạo kỹ thuật Đồng Nai</p>
+                </div>
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 shadow-lg card-hover border-l-4 border-blue-500">
+                    <div class="flex items-start mb-4">
+                        <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-bold">Khuyến khích</span>
+                        <span class="ml-auto text-gray-500 text-sm">2024</span>
+                    </div>
+                    <h4 class="font-semibold text-gray-800">Hệ thống nấu, làm nguội, chiết rót bán tự động</h4>
+                    <p class="text-gray-500 text-sm mt-2">Chương trình sáng kiến tỉnh Đồng Nai</p>
+                </div>
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 shadow-lg card-hover border-l-4 border-blue-500">
+                    <div class="flex items-start mb-4">
+                        <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-bold">Khuyến khích</span>
+                        <span class="ml-auto text-gray-500 text-sm">2024</span>
+                    </div>
+                    <h4 class="font-semibold text-gray-800">Enzyme Bromelain sản xuất bột yến</h4>
+                    <p class="text-gray-500 text-sm mt-2">Cuộc thi STKT tỉnh Đồng Nai</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Transfer Section -->
+    <section class="py-20 gradient-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="font-playfair text-4xl font-bold text-white section-title inline-block" style="--after-bg: white;">Công Trình Áp Dụng Thực Tiễn</h2>
+                <div class="w-16 h-1 bg-white mx-auto mt-4 rounded"></div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8 fade-in">
+                <div class="glass-effect rounded-2xl p-8 card-hover">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-cogs text-white text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-4">Máy ly tâm tách dầu</h4>
+                    <p class="text-blue-100 mb-4">Chuyển giao thiết bị cho Công ty Trần Nguyên Phát, TP. Biên Hòa</p>
+                    <span class="text-blue-200 text-sm">2016 – 2017</span>
+                </div>
+                <div class="glass-effect rounded-2xl p-8 card-hover">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-flask text-white text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-4">Tinh bột nghệ nano</h4>
+                    <p class="text-blue-100 mb-4">Chuyển giao quy trình và thiết bị cho Công ty Bảo Tín Food, TP. Biên Hòa</p>
+                    <span class="text-blue-200 text-sm">2017 – 2018</span>
+                </div>
+                <div class="glass-effect rounded-2xl p-8 card-hover">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-heart text-white text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-4">Son dưỡng môi từ bơ ca cao</h4>
+                    <p class="text-blue-100 mb-4">Chuyển giao quy trình cho Công ty TNHH ca cao Trọng Đức, Định Quán</p>
+                    <span class="text-blue-200 text-sm">2018 – 2019</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Projects Section -->
+    <section id="research" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="font-playfair text-4xl font-bold text-gray-800 section-title inline-block">Nhiệm Vụ KHCN Đã Tham Gia</h2>
+            </div>
+            <div class="space-y-6 fade-in">
+                <div class="bg-white rounded-xl p-6 shadow-lg card-hover flex items-start">
+                    <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mr-6 flex-shrink-0">
+                        <i class="fas fa-project-diagram text-blue-600 text-xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex flex-wrap items-center gap-3 mb-2">
+                            <h4 class="font-semibold text-gray-800">Mô hình pilot sản xuất xúc xích</h4>
+                            <span class="bg-gray-200 text-gray-600 px-3 py-1 rounded-full text-xs">2015 – 2016</span>
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-xs">Thành viên</span>
+                        </div>
+                        <p class="text-gray-500">Đề tài cấp trường</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-lg card-hover flex items-start">
+                    <div class="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mr-6 flex-shrink-0">
+                        <i class="fas fa-user-tie text-green-600 text-xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex flex-wrap items-center gap-3 mb-2">
+                            <h4 class="font-semibold text-gray-800">Mô hình máy xay nghệ</h4>
+                            <span class="bg-gray-200 text-gray-600 px-3 py-1 rounded-full text-xs">2018 – 2019</span>
+                            <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-xs">Chủ nhiệm</span>
+                        </div>
+                        <p class="text-gray-500">Đề tài cấp trường</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-lg card-hover flex items-start">
+                    <div class="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mr-6 flex-shrink-0">
+                        <i class="fas fa-user-tie text-green-600 text-xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex flex-wrap items-center gap-3 mb-2">
+                            <h4 class="font-semibold text-gray-800">Mô hình máy ly tâm tách dầu</h4>
+                            <span class="bg-gray-200 text-gray-600 px-3 py-1 rounded-full text-xs">2018 – 2019</span>
+                            <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-xs">Chủ nhiệm</span>
+                        </div>
+                        <p class="text-gray-500">Đề tài cấp trường</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-lg card-hover flex items-start">
+                    <div class="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mr-6 flex-shrink-0">
+                        <i class="fas fa-user-tie text-green-600 text-xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex flex-wrap items-center gap-3 mb-2">
+                            <h4 class="font-semibold text-gray-800">Nghiên cứu chế biến nước uống lên men từ thanh long</h4>
+                            <span class="bg-gray-200 text-gray-600 px-3 py-1 rounded-full text-xs">2019 – 2020</span>
+                            <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-xs">Chủ nhiệm</span>
+                        </div>
+                        <p class="text-gray-500">Đề tài cấp trường</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-lg card-hover flex items-start border-l-4 border-orange-500">
+                    <div class="w-16 h-16 bg-orange-100 rounded-lg flex items-center justify-center mr-6 flex-shrink-0">
+                        <i class="fas fa-award text-orange-600 text-xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex flex-wrap items-center gap-3 mb-2">
+                            <h4 class="font-semibold text-gray-800">Đa dạng hóa các sản phẩm thực phẩm từ bưởi Da xanh</h4>
+                            <span class="bg-gray-200 text-gray-600 px-3 py-1 rounded-full text-xs">2022 – 2024</span>
+                            <span class="bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-xs font-bold">Chủ nhiệm - Cấp tỉnh</span>
+                        </div>
+                        <p class="text-gray-500">Đề tài cấp tỉnh</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Business Achievement -->
+            <div class="mt-12 bg-gradient-to-r from-pink-50 to-purple-50 rounded-2xl p-8 fade-in">
+                <h3 class="font-playfair text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                    <i class="fas fa-lightbulb text-yellow-500 mr-3"></i>
+                    Thành tựu hoạt động KH&CN và sản xuất kinh doanh
+                </h3>
+                <div class="bg-white rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="bg-pink-500 text-white px-3 py-1 rounded-full text-sm font-bold">Giải khuyến khích</span>
+                        <span class="text-gray-500">2023</span>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 text-lg">Chuỗi sản phẩm trà và cà phê gừng</h4>
+                    <p class="text-gray-500">Tìm kiếm ý tưởng/dự án phụ nữ khởi nghiệp đổi mới sáng tạo tỉnh Đồng Nai lần thứ 5</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="font-playfair text-4xl font-bold text-gray-800 section-title inline-block">Các Bài Báo Khoa Học</h2>
+                <p class="text-gray-500 mt-4">Xem thêm tại <a href="#" class="text-blue-600 hover:underline">Google Scholar</a></p>
+            </div>
+            <div class="space-y-4 fade-in max-h-[800px] overflow-y-auto pr-4" id="publications-list">
+                <div class="publication-item bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition-all">
+                    <h4 class="font-semibold text-gray-800">Polychlorinated biphenyls and organochlorine pesticides in surface water and sediment from a tropical estuary area</h4>
+                    <p class="text-gray-500 text-sm mt-2">Regional Studies in Marine, 2025 | <a href="https://doi.org/10.1016/j.rsma.2025.104407" class="text-blue-600">DOI</a></p>
+                    <p class="text-gray-400 text-xs mt-1">Trinh Thi Tham, Anh Quoc Hoang, ... Loan Thi Thuy Huynh, et al.</p>
+                </div>
+                <div class="publication-item bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition-all">
+                    <h4 class="font-semibold text-gray-800">Ultrafiltration for homogenization of wheat germ oil: water system</h4>
+                    <p class="text-gray-500 text-sm mt-2">Food and Bioprocess Technology, 2022</p>
+                    <p class="text-gray-400 text-xs mt-1">Quoc Dat Lai, Thi Thuy Loan Huynh, et al.</p>
+                </div>
+                <div class="publication-item bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition-all">
+                    <h4 class="font-semibold text-gray-800">Particle size distribution and homogenisation efficiency in high-pressure homogenisation</h4>
+                    <p class="text-gray-500 text-sm mt-2">International Journal of Food Science & Technology, 2022</p>
+                    <p class="text-gray-400 text-xs mt-1">Quoc Dat Lai, Thi Thuy Loan Huynh, et al.</p>
+                </div>
+                <div class="publication-item bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition-all">
+                    <h4 class="font-semibold text-gray-800">Effects of Acid Glutamic and Lighting on GABA Content in Germinated Brown Rice</h4>
+                    <p class="text-gray-500 text-sm mt-2">Journal of Advanced Research, 2020</p>
+                    <p class="text-gray-400 text-xs mt-1">Huynh Thi Thuy Loan, Ho Thi Ngoc Nhung</p>
+                </div>
+                <div class="publication-item bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition-all">
+                    <h4 class="font-semibold text-gray-800">Rheological Properties of Dark Chocolate Replaced Cocoa Butter with Coconut Oil</h4>
+                    <p class="text-gray-500 text-sm mt-2">Journal of Advanced Research in Food Science and Nutrition, 2020</p>
+                    <p class="text-gray-400 text-xs mt-1">Huynh Thi Thuy Loan, Ho Thi Ngoc Nhung</p>
+                </div>
+                <div class="publication-item bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition-all">
+                    <h4 class="font-semibold text-gray-800">Application of ultrasound technique in the extraction of proteins from chickpea</h4>
+                    <p class="text-gray-500 text-sm mt-2">Tạp chí Khoa học và Công nghệ Đại học Công nghệ Đồng Nai</p>
+                    <p class="text-gray-400 text-xs mt-1">Huynh Thi Thuy Loan, Nguyen Thi Thuy Duyen</p>
+                </div>
+                <div class="publication-item bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition-all">
+                    <h4 class="font-semibold text-gray-800">Consumer Behavior and Sustainability in the Online Food Delivery Industry</h4>
+                    <p class="text-gray-500 text-sm mt-2">The 2nd Conference on Sustainability and Emerging Technologies 2024</p>
+                    <p class="text-gray-400 text-xs mt-1">Huynh Thi Thuy Loan, Nguyen Thi Thuy Duyen</p>
+                </div>
+                <div class="publication-item bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition-all">
+                    <h4 class="font-semibold text-gray-800">Effects of germination time of soybean to the activity of soybean urease enzyme</h4>
+                    <p class="text-gray-500 text-sm mt-2">Bioresearch Communications-(BRC), 2019</p>
+                    <p class="text-gray-400 text-xs mt-1">Ho Thi Ngoc Nhung, Huynh Thi Thuy Loan, Tran Bich Lam</p>
+                </div>
+                <div class="publication-item bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition-all">
+                    <h4 class="font-semibold text-gray-800">Utilizing vacuum drying method to produce soursop (annona muricata) tea</h4>
+                    <p class="text-gray-500 text-sm mt-2">Advanced and Applied Convergence Letters, 2016</p>
+                    <p class="text-gray-400 text-xs mt-1">Huỳnh Thị Thúy Loan</p>
+                </div>
+            </div>
+            <div class="text-center mt-8">
+                <button id="show-more-btn" class="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-700 transition-all shadow-lg">
+                    <i class="fas fa-plus mr-2"></i>Xem thêm công bố
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 gradient-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="font-playfair text-4xl font-bold text-white">Liên Hệ Công Tác</h2>
+                <div class="w-16 h-1 bg-white mx-auto mt-4 rounded"></div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center fade-in">
+                <div class="space-y-8">
+                    <div class="glass-effect rounded-2xl p-6 flex items-center">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mr-6">
+                            <i class="fas fa-phone text-white text-2xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-blue-200 text-sm">Điện thoại</p>
+                            <p class="text-white text-xl font-semibold">0933.425.432</p>
+                        </div>
+                    </div>
+                    <div class="glass-effect rounded-2xl p-6 flex items-center">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mr-6">
+                            <i class="fas fa-envelope text-white text-2xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-blue-200 text-sm">Email</p>
+                            <a href="mailto:huynhthithuyloan@dntu.edu.vn" class="text-white text-xl font-semibold hover:underline">huynhthithuyloan@dntu.edu.vn</a>
+                        </div>
+                    </div>
+                    <div class="glass-effect rounded-2xl p-6 flex items-center">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mr-6">
+                            <i class="fas fa-university text-white text-2xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-blue-200 text-sm">Đơn vị công tác</p>
+                            <p class="text-white text-lg font-semibold">Khoa Công nghệ</p>
+                            <p class="text-blue-100">Trường ĐH Công Nghệ Đồng Nai</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-effect rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold text-white mb-6">Gửi tin nhắn</h3>
+                    <form id="contact-form" class="space-y-4">
+                        <input type="text" placeholder="Họ và tên" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-blue-200 focus:outline-none focus:border-white">
+                        <input type="email" placeholder="Email" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-blue-200 focus:outline-none focus:border-white">
+                        <textarea placeholder="Nội dung tin nhắn" rows="4" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-blue-200 focus:outline-none focus:border-white resize-none"></textarea>
+                        <button type="submit" class="w-full bg-white text-blue-800 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-all">
+                            <i class="fas fa-paper-plane mr-2"></i>Gửi tin nhắn
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-center md:text-left mb-4 md:mb-0">
+                    <p class="font-playfair text-xl font-bold">ThS. Huỳnh Thị Thúy Loan</p>
+                    <p class="text-gray-400 text-sm">Giảng viên Khoa Công nghệ - ĐH Công Nghệ Đồng Nai</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="https://orcid.org/0009-0002-4266-668X" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-orcid text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fas fa-graduation-cap text-2xl"></i>
+                    </a>
+                    <a href="mailto:huynhthithuyloan@dntu.edu.vn" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fas fa-envelope text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-6 pt-6 text-center">
+                <p class="text-gray-500 text-sm">© 2025 Huỳnh Thị Thúy Loan. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('bg-gray-900/95', 'backdrop-blur-sm', 'shadow-lg');
+            } else {
+                navbar.classList.remove('bg-gray-900/95', 'backdrop-blur-sm', 'shadow-lg');
+            }
+        });
+
+        // Fade in animation on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(el => observer.observe(el));
+
+        // Contact form submission
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Cảm ơn bạn đã gửi tin nhắn! Tôi sẽ phản hồi sớm nhất có thể.');
+        });
+
+        // Show more publications
+        document.getElementById('show-more-btn').addEventListener('click', function() {
+            const list = document.getElementById('publications-list');
+            list.style.maxHeight = 'none';
+            this.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
